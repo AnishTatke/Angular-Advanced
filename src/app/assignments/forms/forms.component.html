@@ -1,0 +1,74 @@
+<div class="navbar">
+    <h1 class="nav_heading">Employee Form</h1>
+</div>
+
+<div class="container-fluid mt-5 mb-5">
+    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label>Employee Name</label>
+            <input [class.is-invalid]="employeeName?.invalid && employeeName?.touched" formControlName="employeeName" type="text" class="form-control">
+            <div *ngIf="employeeName?.invalid && employeeName?.touched">
+                <small *ngIf="employeeName?.errors?.required" class="text-danger">Employee must specify a name</small>
+                <small *ngIf="employeeName?.errors?.minlength" class="text-damger">Employee name must be atleast 3 characters</small>
+            </div>
+        </div>
+
+        <div formGroupName="employeeAddress">
+
+            <div class="form-group">
+                <label>Street</label>
+                <input formControlName="street" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Locality</label>
+                <input [class.is-invalid]="locality?.invalid && locality?.touched" formControlName="locality" type="text" class="form-control">
+                <small [class.d-none]="locality?.valid || locality?.untouched" class="text-danger">Please specify a locality</small>
+            </div>
+            <div class="form-group">
+                <label>City</label>
+                <input [class.is-invalid]="city?.invalid && city?.touched" formControlName="city" type="text" class="form-control">
+                <small [class.d-none]="city?.valid || city?.untouched" class="text-danger">Please specify a city</small>
+            </div>
+            <div class="form-group">
+                <label>Pin Code</label>
+                <input [class.is-invalid]="pinCode?.invalid && pinCode?.touched" formControlName="pinCode" type="text" class="form-control">
+                <div *ngIf="pinCode?.invalid && pinCode?.touched">
+                    <small *ngIf="pinCode?.errors?.required" class="text-danger">Employee must specify a pin code/zip code</small>
+                    <small *ngIf="pinCode?.errors?.minlength || pinCode?.errors?.maxlength" class="text-damger">Pin code can be 6 digits only</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Employee Phone Number</label>
+            <input [class.is-invalid]="employeePhoneNumber?.invalid && employeePhoneNumber?.touched" formControlName="employeePhoneNumber" type="tel" class="form-control">
+            <div *ngIf="employeePhoneNumber?.invalid && employeePhoneNumber?.touched">
+                <small *ngIf="employeePhoneNumber?.errors?.required" class="text-danger">Employee must specify a phone number</small>
+                <small *ngIf="employeePhoneNumber?.errors?.minlength || employeePhoneNumber?.errors?.maxlength" class="text-damger">Employee phone number can be 10 digits only</small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Employee Date of Birth:</label>
+            <input [class.is-invalid]="employeeDOB?.invalid && employeeDOB?.touched" formControlName="employeeDOB" type="date" class="form-control">
+            <small [class.d-none]="employeeDOB?.valid || employeeDOB?.untouched" class="text-danger">Please specify a date of birth</small>
+        </div>
+
+        {{ employeeDOB }}
+
+        <div class="form-group">
+            <label>Employee Email</label>
+            <input [class.is-invalid]="employeeEmail?.invalid && employeeEmail?.touched" formControlName="employeeEmail" type="email" class="form-control">
+            <div *ngIf="employeeEmail?.invalid && employeeEmail?.touched">
+                <small *ngIf="employeeEmail?.errors?.required" class="text-danger">Employee must specify a email</small>
+                <small *ngIf="employeeEmail?.errors?.email" class="text-damger">Employee email is invalid</small>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-center m-4">
+            <button mat-button class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+
+    {{ registrationForm.value | json }}
+</div>
