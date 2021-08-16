@@ -54,8 +54,6 @@
             <small [class.d-none]="employeeDOB?.valid || employeeDOB?.untouched" class="text-danger">Please specify a date of birth</small>
         </div>
 
-        {{ employeeDOB }}
-
         <div class="form-group">
             <label>Employee Email</label>
             <input [class.is-invalid]="employeeEmail?.invalid && employeeEmail?.touched" formControlName="employeeEmail" type="email" class="form-control">
